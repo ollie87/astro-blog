@@ -1,0 +1,11 @@
+---
+interface Props {
+    url: string | undefined
+    title: string
+    lastUpdated: string
+}
+const {url, title, lastUpdated} = Astro.props
+---
+<li>
+    <a href={url}>{ `${ title } ultima actualización: ${lastUpdated}` }</a>
+</li>
