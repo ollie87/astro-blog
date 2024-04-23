@@ -1,6 +1,7 @@
 ---
 import type { MarkdownInstance } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogPost from '../../components/BlogPost.astro';
 
 export async function getStaticPaths() {
     const allPosts: MarkdownInstance<Record<string, any>>[] = await Astro.glob('../posts/*.md');
@@ -16,11 +17,10 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
-const filteredPosts = posts.filter((post) => post.frontmatter.tags?.includes(tag));
 ---
 <BaseLayout pageTitle={tag}>
   <p>Entradas etiquetadas con {tag}</p>
   <ul>
-    {filteredPosts.map((post) => <li><a href={post.url}>{post.frontmatter.title}</a></li>)}
+    {posts.map((post) => <BlogPost url={post.url} title={post.frontmatter.title} lastUpdated={post.frontmatter.pubDate}/>)}
   </ul>
 </BaseLayout>
