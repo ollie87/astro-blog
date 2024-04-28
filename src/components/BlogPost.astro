@@ -4,7 +4,7 @@ interface Props {
     title: string
     lastUpdated: string
 }
-const {url, title, lastUpdated} = Astro.props
+const {url, title, lastUpdated}: Props = Astro.props
 ---
 <li>
     <a href={url}>{ `${ title } ultima actualización: ${lastUpdated}` }</a>
